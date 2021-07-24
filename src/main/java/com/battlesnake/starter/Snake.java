@@ -167,6 +167,12 @@ public class Snake {
             int dx[]={1,-1,0,0};
             int dy[]={0,0,-1,1};
             int nextMove=-1;
+            for(int x[]:board){
+                for(int j:x){
+                    System.out.print(j);
+                }
+                System.out.println();
+            }
             for(int move=0;move<4;move++){
 
                 int nextStepX=hx+dx[move];
