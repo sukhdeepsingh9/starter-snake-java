@@ -147,16 +147,41 @@ public class Snake {
 
             */
 
+            int h=moveRequest.get("board").get("height").asInt();
+            int w=moveRequest.get("board").get("width").asInt();
+            JsonNode body=moveRequest.get("board").get("snakes").get(0).get("body");
+            JsonNode head=moveRequest.get("board").get("snakes").get(0).get("head");
+            int board[][]=new int[h][w];
+
+            if(body.isArray()){
+                for(JsonNode node:body){
+                    board[node.get("x").asInt()][node.get("y").asInt()]=1;
+
+                }
+            }
+            int hx=head.get("x").asInt();
+            int hy=head.get("y").asInt();
+
+
             String[] possibleMoves = { "up", "down", "left", "right" };
+            int dx[]={1,-1,0,0};
+            int dy[]={0,0,-1,1};
+            int nextMove=-1;
+            for(int move=0;move<4;move++){
 
-            // Choose a random direction to move in
-            int choice = new Random().nextInt(possibleMoves.length);
-            String move = possibleMoves[2];
+                int nextStepX=hx+dx[move];
+                int nextStepY=hy+dy[move];
+                if(board[nextStepX][nextStepY]==0){
+                    nextMove=move;
+                    break;
+                }
 
-            LOG.info("MOVE {}", move);
+            }
+
+            LOG.info("MOVE {}", possibleMoves[nextMove]);
 
             Map<String, String> response = new HashMap<>();
-            response.put("move", move);
+            response.put("move", possibleMoves[nextMove]);
             return response;
         }
 
