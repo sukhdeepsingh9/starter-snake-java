@@ -155,7 +155,7 @@ public class Snake {
 
             if(body.isArray()){
                 for(JsonNode node:body){
-                    board[node.get("x").asInt()][node.get("y").asInt()]=1;
+                    board[6-node.get("y").asInt()][node.get("x").asInt()]=1;
 
                 }
             }
