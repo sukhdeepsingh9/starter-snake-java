@@ -151,7 +151,7 @@ public class Snake {
 
             // Choose a random direction to move in
             int choice = new Random().nextInt(possibleMoves.length);
-            String move = possibleMoves[choice];
+            String move = possibleMoves[2];
 
             LOG.info("MOVE {}", move);
 
